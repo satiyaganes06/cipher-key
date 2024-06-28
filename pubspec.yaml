@@ -1,0 +1,115 @@
+name: cipherkey
+description: A new Flutter project.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.1
+
+environment:
+  sdk: ">=3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  flutter_advanced_drawer: ^1.3.2
+  get: ^4.6.5
+  google_fonts: ^5.1.0
+  cached_network_image: ^3.2.1
+  avatar_glow: ^2.0.2
+  delayed_display: ^2.0.0
+  auto_size_text: ^3.0.0
+
+
+  firebase_auth: ^4.8.0
+  firebase_core: ^2.15.1
+  fluttertoast: ^8.0.9
+  google_sign_in: ^6.1.5
+  cloud_firestore: ^4.9.0
+  firebase_core_platform_interface: ^4.8.0
+
+  lottie: ^2.6.0
+  loader_overlay: ^2.0.10
+  
+  auto_animated: ^3.1.0
+  octo_image: ^2.0.0
+  image_picker: ^1.0.3
+  http: ^1.1.0
+  flutter_switch: ^0.3.2
+  animations: ^2.0.5
+  keyboard_dismisser: ^3.0.0
+  fancy_password_field: ^2.0.0
+  
+
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  flutter_secure_storage: ^9.0.0
+  flutter_windowmanager: ^0.2.0
+  equatable: ^2.0.5
+  uuid: ^4.0.0
+  local_auth: ^2.1.7
+  
+  get_it: ^7.6.2
+  adaptive_dialog: ^1.9.0+2
+  
+  flutter_scrolling_fab_animated: ^0.1.4
+  emailjs: ^1.3.0
+  device_info_plus: ^9.0.3
+  iconsax: ^0.0.8
+  pinput: ^3.0.1
+  url_launcher: ^6.1.14
+  pretty_textfield: ^0.0.1
+  percent_indicator: ^4.2.3
+  vibration: ^1.8.1
+  shimmer: ^3.0.0
+  flutter_cache_manager: ^3.3.1
+  dot_navigation_bar: ^1.0.2
+  change_app_package_name: ^1.2.0
+  # huawei_safetydetect: ^6.4.0+302
+  webview_flutter: ^4.4.0
+  fluentui_system_icons: ^1.1.217
+  flutter_dotenv: ^5.1.0
+  remixicon: ^1.2.0
+  flutter_gemini: ^2.0.3
+  dash_chat_2: ^0.0.20
+  
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+  build_runner: ^2.4.6
+  hive_generator:
+  json_serializable: ^6.7.1
+  json_annotation: ^4.3.0
+
+
+flutter:
+
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/lottie/login_page_animation.json
+    - assets/lottie/email_verification_animation.json
+    - assets/lottie/forgot_password_animation.json
+    - assets/lottie/splash_screen_Animation.json
+    - assets/lottie/
+    - assets/images/
+    - assets/fonts/
+    - .env
+
+  fonts:
+    - family: terano
+      fonts:
+        - asset: assets/fonts/Terano_Bold.otf
+        - asset: assets/fonts/Terano_Regular.otf
+        # - asset: fonts/Schyler-Italic.ttf
+          # style: italic
+    
+
+

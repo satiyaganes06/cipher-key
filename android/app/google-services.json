@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "253331236563",
+    "project_id": "cypherkey",
+    "storage_bucket": "cypherkey.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253331236563:android:232b3bf47d428817f05626",
+        "android_client_info": {
+          "package_name": "com.ck.cipherkey"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBs8wkCRcVTaPy6NwJaAmAr6Eh3thqP7RE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
