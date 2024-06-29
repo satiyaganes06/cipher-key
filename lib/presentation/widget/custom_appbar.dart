@@ -42,18 +42,29 @@ class CustomAppBar extends StatelessWidget {
       //     )
       //   ),
       // ),
-      title: Text('--Cipher**Key--',
-          style: TextStyle(
-              fontFamily: 'terano',
-              color: colors.AppColor.secondaryColor,
-              fontWeight: FontWeight.w500,
-              letterSpacing: 2.0,
-              fontSize: 14)
-          // style: GoogleFonts.poppins(
-          //     color: colors.AppColor.secondaryColor,
-          //     fontWeight: FontWeight.bold,
-          //     letterSpacing: 1),
-          ),
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text('Cipher',
+              style: GoogleFonts.poppins(
+                  color: colors.AppColor.secondaryColor,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.5,
+                  fontSize: 18)),
+          Text('Key',
+              style: GoogleFonts.poppins(
+                  color: colors.AppColor.secondaryColor,
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 1.5,
+                  fontSize: 18))
+        ],
+      ),
+      // style: GoogleFonts.poppins(
+      //     color: colors.AppColor.secondaryColor,
+      //     fontWeight: FontWeight.bold,
+      //     letterSpacing: 1),
+
       centerTitle: true,
       backgroundColor: colors.AppColor.primaryColor,
       elevation: 1,

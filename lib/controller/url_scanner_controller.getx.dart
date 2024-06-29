@@ -40,7 +40,9 @@ class UrlScannerController extends GetxController {
         // filteredResult =
         //     orderedValues.where((value) => result.contains(value)).toList();
         isLoading.value = false;
-        Get.to(() => ViewURLReport());
+
+        // print(dataURLReport!.data!.attributes!.lastAnalysisDate.toString());
+        Get.to(() => const ViewUrlReportScreen());
       } else {
         isLoading.value = false;
         failMessage(Get.context!, response['data'].toString());
@@ -48,7 +50,28 @@ class UrlScannerController extends GetxController {
     } catch (e) {
       print("Error: " + e.toString());
       isLoading.value = false;
+      failMessage(Get.context!, 'Not found or something went wrong');
+    }
+  }
+
+  void castVote({required bool isHarmless}) async {
+    try {
+      await VirusTotalApiService()
+          .castVoteForURL(dataID!.split('-')[1], isHarmless);
+      successMessage(Get.context!, "Vote casted successfully");
+    } catch (e) {
       failMessage(Get.context!, e.toString());
+    }
+  }
+
+  void rescanURL() async {
+    try {
+      String response =
+          await VirusTotalApiService().reScanUrl(dataID!.split('-')[1]);
+      successMessage(Get.context!, response);
+    } catch (e) {
+      debugPrint(e.toString());
+      failMessage(Get.context!, 'Something went wrong');
     }
   }
 

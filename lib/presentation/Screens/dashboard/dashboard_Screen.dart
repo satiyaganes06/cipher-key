@@ -77,7 +77,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               side: BorderSide(width: 2, color: colors.AppColor.accentColor),
               borderRadius: BorderRadius.circular(100)),
           child: Lottie.asset('assets/lottie/add_vault_animation_2.json',
-              height: Get.height * 0.07, width: Get.height * 0.07),
+              height: Get.height * 0.08, width: Get.height * 0.08),
         ));
   }
 

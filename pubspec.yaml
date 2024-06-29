@@ -16,7 +16,7 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   flutter_advanced_drawer: ^1.3.2
-  get: ^4.6.5
+  get: ^4.6.6
   google_fonts: ^5.1.0
   cached_network_image: ^3.2.1
   avatar_glow: ^2.0.2
@@ -69,12 +69,15 @@ dependencies:
   dot_navigation_bar: ^1.0.2
   change_app_package_name: ^1.2.0
   # huawei_safetydetect: ^6.4.0+302
-  webview_flutter: ^4.4.0
+  webview_flutter: ^4.8.0
   fluentui_system_icons: ^1.1.217
   flutter_dotenv: ^5.1.0
   remixicon: ^1.2.0
   flutter_gemini: ^2.0.3
-  dash_chat_2: ^0.0.20
+  dash_chat_2: ^0.0.21
+  google_generative_ai: ^0.4.3
+  flutter_html: ^3.0.0-beta.2
+  flutter_inappwebview: ^6.0.0
   
 
 dev_dependencies:

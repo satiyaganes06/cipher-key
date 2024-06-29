@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:cipherkey/utils/colors.dart' as colors;
 import 'package:cipherkey/utils/dimensions.dart' as dimens;
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:remixicon/remixicon.dart';
 import '../../../controller/url_scanner_controller.getx.dart';
 import '../../../model/virus_total_model.dart';
 import '../../widget/appbar.dart';
@@ -12,11 +13,21 @@ import '../../widget/custom_appbar.dart';
 
 enum UrlScannerState { phishing, malicious, clean, unrated, suspicious }
 
-class ViewURLReport extends StatelessWidget {
-  ViewURLReport({super.key});
+class ViewUrlReportScreen extends StatefulWidget {
+  const ViewUrlReportScreen({super.key});
 
+  @override
+  State<ViewUrlReportScreen> createState() => _ViewUrlReportScreenState();
+}
+
+class _ViewUrlReportScreenState extends State<ViewUrlReportScreen> {
   final controller = Get.find<UrlScannerController>();
   List<String> resultKeys = [];
+
+  bool voteCastHarmless = false;
+  bool voteCastMalicious = false;
+
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +37,12 @@ class ViewURLReport extends StatelessWidget {
     return Scaffold(
         appBar: CommonAppbar(
           title: 'URL Report',
-          isActionBtnEnable: false,
           isBackBtnEnable: true,
+          isActionBtnEnable: true,
+          icon: const Icon(Remix.scan_line),
+          actionBtnFunction: () {
+            controller.rescanURL();
+          },
         ),
         body: CustomScrollView(
           slivers: [
@@ -44,12 +59,20 @@ class ViewURLReport extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              controller.castVote(isHarmless: false);
+                              setState(() {
+                                voteCastMalicious = true;
+                                voteCastHarmless = false;
+                              });
+                            },
                             splashRadius: 20,
                             tooltip: 'This URL is not safe to visit',
                             icon: Icon(
                               Icons.close_outlined,
-                              color: colors.AppColor.subtitle2Color,
+                              color: voteCastMalicious != true
+                                  ? colors.AppColor.subtitle2Color
+                                  : colors.AppColor.fail2,
                               size: 25,
                             )),
                         SizedBox(
@@ -63,12 +86,20 @@ class ViewURLReport extends StatelessWidget {
                           ),
                         ),
                         IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              controller.castVote(isHarmless: true);
+                              setState(() {
+                                voteCastHarmless = true;
+                                voteCastMalicious = false;
+                              });
+                            },
                             splashRadius: 20,
                             tooltip: 'This URL is safe to visit',
                             icon: Icon(
-                              Icons.check_circle_outline,
-                              color: colors.AppColor.subtitle2Color,
+                              Icons.check_outlined,
+                              color: voteCastHarmless != true
+                                  ? colors.AppColor.subtitle2Color
+                                  : colors.AppColor.success,
                               size: 25,
                             )),
                       ])),
@@ -400,11 +431,10 @@ class ViewURLReport extends StatelessWidget {
       lineWidth: 15.0,
       animation: true,
       percent: data!.malicious != 0
-          ? (data.malicious! + data.malicious!.toInt()) / 100
+          ? (data.malicious! + data.suspicious!.toInt()) / 100
           : data.suspicious != 0
               ? data.suspicious! / 100
-              : (data.harmless! + data.harmless! + data.undetected!.toInt()) /
-                  100,
+              : (data.harmless! + data.undetected!.toInt()) / 100,
       animationDuration: 1000,
       backgroundColor: colors.AppColor.lightGrey,
       center: Column(
@@ -416,12 +446,13 @@ class ViewURLReport extends StatelessWidget {
                   ? (data.suspicious! + data.malicious!.toInt()).toString()
                   : data.suspicious != 0
                       ? data.suspicious.toString()
-                      : (data.harmless! +
-                              data.harmless! +
-                              data.undetected!.toInt())
-                          .toString(),
+                      : (data.harmless! + data.undetected!.toInt()).toString(),
               style: GoogleFonts.poppins(
-                  color: colors.AppColor.fail2,
+                  color: data!.malicious != 0
+                      ? colors.AppColor.fail2
+                      : data!.suspicious != 0
+                          ? colors.AppColor.fail2
+                          : colors.AppColor.success,
                   fontSize: 26,
                   fontWeight: FontWeight.bold),
             ),
@@ -437,7 +468,7 @@ class ViewURLReport extends StatelessWidget {
           ? colors.AppColor.fail2
           : data!.suspicious != 0
               ? colors.AppColor.fail2
-              : colors.AppColor.subtitleColor,
+              : colors.AppColor.success,
     );
   }
 }

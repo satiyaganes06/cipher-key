@@ -46,7 +46,9 @@ class UrlScannerScreen extends StatelessWidget {
                 color: Colors.transparent,
                 child: InkWell(
                   onTap: () {
-                    controller.scanUrl();
+                    if (_formKey.currentState!.validate()) {
+                      controller.scanUrl();
+                    }
                   },
                   child: Icon(
                     Icons.search,
@@ -71,6 +73,8 @@ class UrlScannerScreen extends StatelessWidget {
           validator: (value) {
             if (value!.isEmpty) {
               return 'Please enter URL';
+            } else if (value.isURL == false) {
+              return 'Please enter valid URL';
             } else if (value.isURL == false) {
               return 'Please enter valid URL';
             }

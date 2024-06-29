@@ -227,23 +227,23 @@ class _AddNewAccountState extends State<AddNewAccount> {
                               false,
                               false,
                               false)),
-                      Space(Get.height * 0.01),
-                      Obx(() => DelayedDisplay(
-                          delay: Duration(
-                              milliseconds:
-                                  dimens.Dimens.delayAnimationLogInPage),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 5),
-                            child: Text(
-                                addNewAccountController.urlCheckResult.value,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.poppins(
-                                    color: addNewAccountController
-                                        .urlCheckResultColor.value,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 12)),
-                          ))),
+                      //Space(Get.height * 0.01),
+                      // Obx(() => DelayedDisplay(
+                      //     delay: Duration(
+                      //         milliseconds:
+                      //             dimens.Dimens.delayAnimationLogInPage),
+                      //     child: Padding(
+                      //       padding: const EdgeInsets.symmetric(horizontal: 5),
+                      //       child: Text(
+                      //           addNewAccountController.urlCheckResult.value,
+                      //           maxLines: 1,
+                      //           overflow: TextOverflow.ellipsis,
+                      //           style: GoogleFonts.poppins(
+                      //               color: addNewAccountController
+                      //                   .urlCheckResultColor.value,
+                      //               fontWeight: FontWeight.w400,
+                      //               fontSize: 12)),
+                      //     ))),
                       Space(Get.height * 0.03),
                       titleWidget('Category'),
                       Space(Get.height * 0.01),
@@ -345,7 +345,8 @@ class _AddNewAccountState extends State<AddNewAccount> {
                                           addNewAccountController
                                               .addAccountFun();
 
-                                          Get.offAll(const MainScreen());
+                                          Get.back();
+                                          Get.back();
                                         }
                                       }
                                     : null,

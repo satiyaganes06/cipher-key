@@ -11,7 +11,7 @@ class CommonAppbar extends StatelessWidget implements PreferredSizeWidget {
   bool isActionBtnEnable = false;
   bool isBackBtnEnable = true;
   var bottomBar;
-  Icon? icon;
+  Widget? icon;
   Function? actionBtnFunction = () {};
 
   CommonAppbar({
