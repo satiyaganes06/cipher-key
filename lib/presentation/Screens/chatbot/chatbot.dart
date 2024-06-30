@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:cipherkey/utils/colors.dart' as colors;
 import 'package:cipherkey/utils/dimensions.dart' as dimens;
+import 'package:cipherkey/utils/constants.dart' as constants;
 import 'package:cipherkey/presentation/widget/appbar.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:flutter/material.dart';
@@ -44,23 +45,26 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
         topK: 64,
         maxOutputTokens: 8192,
       ),
-      systemInstruction: Content('model', [
-        TextPart(
-            '''This AI model is designed to provide information and guidance on cybersecurity awareness and the specific features and functionalities of an application that monitors URLs and applications engaged in cybercrimes. The model should only respond to queries related to the following topics:
-
-Basics of cybersecurity.
-Common types of cyber threats (e.g., malware, phishing, illicit video streaming).
-Identifying and avoiding suspicious URLs and applications.
-Features and usage of the cybersecurity application.
-Notifications and alerts from the application.
-Best practices for maintaining cybersecurity.
-Advanced cybersecurity topics related to the application (e.g., machine learning in malware detection).
-Real-world scenarios related to cyber threats and responses.
-User feedback and improving the application.
-The model should not respond to queries outside of these specified topics. If a query falls outside the scope, the model should respond with:
-
-"I'm sorry, I can only provide information and assistance related to cybersecurity awareness and the specific features and functionalities of the cybersecurity application. Please ask a question related to these topics.''')
-      ]),
+      safetySettings: [
+        SafetySetting(
+          HarmCategory.harassment,
+          HarmBlockThreshold.low,
+        ),
+        SafetySetting(
+          HarmCategory.hateSpeech,
+          HarmBlockThreshold.high,
+        ),
+        SafetySetting(
+          HarmCategory.sexuallyExplicit,
+          HarmBlockThreshold.low,
+        ),
+        SafetySetting(
+          HarmCategory.dangerousContent,
+          HarmBlockThreshold.none,
+        ),
+      ],
+      systemInstruction: Content(
+          'model', [TextPart(constants.Constants.geminiSystemInstruction)]),
     );
 
     geminiModel.startChat(history: [
@@ -125,6 +129,9 @@ The model should not respond to queries outside of these specified topics. If a 
         TextPart(
             '''You're right to be wary of phishing scams! They're getting increasingly sophisticated. Here's what to watch out for: Suspicious Sender: Double-check the sender's email address. Look for misspellings, extra numbers, or if it's from a public domain (like @gmail.com) when it should be from a company domain. Generic Greetings: Be wary of emails starting with "Dear valued customer" or similar generic greetings. Legitimate companies usually personalize communications. Urgent or Threatening Language: Phishing emails often create a sense of urgency or fear to pressure you into acting quickly without thinking. Don't fall for it! Suspicious Links: Hover over any links without clicking them. Does the URL match the text of the link? Does it lead to a website that makes sense in the context of the email? Requests for Personal Information: Legitimate companies will never ask for sensitive information like passwords or credit card details via email. Grammatical Errors and Typos: While not always a guarantee of phishing, poor grammar and spelling mistakes can be red flags.'''),
       ]),
+      // Content('user',
+      //     [TextPart('can you generate a password using my name logathepan')]),
+      // Content('model', [TextPart('log@th*e*p@n19102')]),
     ]);
 
     // gemini.s
